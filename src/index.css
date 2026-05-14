@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #3a3939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #c1c6d7;
+  --color-inverse-surface: #e5e2e1;
+  --color-inverse-on-surface: #313030;
+  --color-outline: #8b90a0;
+  --color-outline-variant: #414754;
+  --color-surface-tint: #aec6ff;
+  --color-primary-accent: #aec6ff;
+  --color-on-primary: #002e6b;
+  --color-primary-container: #0070f3;
+  --color-on-primary-container: #ffffff;
+  --color-inverse-primary: #0059c5;
+  --color-secondary-accent: #dbb8ff;
+  --color-on-secondary: #470083;
+  --color-secondary-container: #6807ba;
+  --color-on-secondary-container: #d0a6ff;
+  --color-tertiary: #ffb596;
+  --color-on-tertiary: #581e00;
+  --color-tertiary-container: #ca4e00;
+  --color-on-tertiary-container: #fffeff;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans selection:bg-primary-accent/30 overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-[rgba(10,10,10,0.7)] backdrop-blur-[20px] border border-white/10 transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply border-[rgba(174,198,255,0.4)] shadow-[0_0_20px_rgba(0,112,243,0.1)];
+  }
+
+  .hero-grid {
+    background-image: 
+      linear-gradient(rgba(174, 198, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(174, 198, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .timeline-dash {
+    background-image: linear-gradient(to bottom, #414754 50%, transparent 50%);
+    background-size: 2px 8px;
+  }
+}
