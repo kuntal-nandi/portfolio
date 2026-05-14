@@ -23,6 +23,7 @@ import {
   Briefcase,
   DraftingCompass
 } from 'lucide-react';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
 // --- Components ---
@@ -66,13 +67,17 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-          <motion.button 
+          <motion.a 
+            href={`${(import.meta as unknown as { env: { BASE_URL: string } }).env.BASE_URL}kuntal_cv_2026-2.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-medium shadow-lg shadow-primary-container/20"
+            className="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-medium shadow-lg shadow-primary-container/20 inline-block"
           >
             Resume
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -104,9 +109,16 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
-              <button className="bg-primary-container text-on-primary-container p-3 rounded-xl font-medium">
+              <a 
+                href={`${(import.meta as unknown as { env: { BASE_URL: string } }).env.BASE_URL}kuntal_cv_2026-2.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="bg-primary-container text-on-primary-container p-3 rounded-xl font-medium text-center"
+              >
                 Resume
-              </button>
+              </a>
             </div>
           </motion.div>
         )}
@@ -159,20 +171,25 @@ const Hero = () => {
           transition={{ delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <motion.button 
+          <motion.a 
+            href="#projects"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-primary-container text-on-primary-container px-8 py-4 rounded-full font-semibold flex items-center gap-2 hover:shadow-[0_0_20px_rgba(0,112,243,0.4)] transition-all"
           >
             View Projects <ArrowRight size={20} />
-          </motion.button>
-          <motion.button 
+          </motion.a>
+          <motion.a 
+            href={`${(import.meta as unknown as { env: { BASE_URL: string } }).env.BASE_URL}kuntal_cv_2026-2.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="border border-outline-variant bg-white/5 backdrop-blur-md px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors"
           >
             Download Resume
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
@@ -287,10 +304,14 @@ const EngineeringShowcase = () => {
                 <span className="px-3 py-1 bg-white/5 text-on-surface-variant text-xs font-mono rounded-full">PRODUCTION</span>
               </div>
               <h3 className="font-display text-3xl font-bold">eZRx+ Pharma Distribution</h3>
-              <p className="text-on-surface-variant leading-relaxed">Architected a complex distribution system for pharmaceuticals, optimizing order flow and tracking across multiple Asian markets.</p>
+              <p className="text-on-surface-variant leading-relaxed">Healthcare medication management application. Tech Stack: Flutter, DDD, BLoC, Freezed, GetIt, AutoRoute</p>
               <div className="flex gap-3">
-                <Smartphone className="text-primary-accent" size={24} />
-                <Cloud className="text-secondary-accent" size={24} />
+                <a href="https://play.google.com/store/apps/details?id=com.zuelligpharma.ezrxplus" target="_blank" rel="noopener noreferrer" className="text-primary-accent hover:text-primary-accent/80 transition-colors">
+                  <Smartphone size={24} />
+                </a>
+                <a href="https://apps.apple.com/in/app/ezrx/id6450109562" target="_blank" rel="noopener noreferrer" className="text-secondary-accent hover:text-secondary-accent/80 transition-colors">
+                  <Cloud size={24} />
+                </a>
               </div>
             </div>
             <div className="flex-1 relative min-h-[300px] md:min-h-0">
@@ -312,7 +333,14 @@ const EngineeringShowcase = () => {
           >
             <div className="flex justify-between items-start">
               <div className="px-3 py-1 bg-secondary-accent/20 text-secondary-accent text-xs font-mono rounded-full">EDTECH</div>
-              <ExternalLink className="text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" size={20} />
+              <div className="flex gap-2">
+                <a href="https://play.google.com/store/apps/details?id=com.cbllc.connectbud" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                  <Smartphone size={20} />
+                </a>
+                <a href="https://apps.apple.com/in/app/connectbud/id1550314865" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                  <ExternalLink size={20} />
+                </a>
+              </div>
             </div>
             <h3 className="font-display text-2xl font-bold">ConnectBud</h3>
             <p className="text-on-surface-variant text-sm flex-grow">Interactive peer-to-peer learning platform with real-time video features.</p>
@@ -322,15 +350,22 @@ const EngineeringShowcase = () => {
             </div>
           </motion.div>
 
-          {/* NiyoX */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="md:col-span-3 glass-card rounded-2xl p-8 flex flex-col space-y-6 group"
           >
-            <div className="flex gap-2">
-              <span className="px-3 py-1 bg-primary-accent/20 text-primary-accent text-xs font-mono rounded-full">FINTECH</span>
+            <div className="flex justify-between items-start">
+              <div className="px-3 py-1 bg-primary-accent/20 text-primary-accent text-xs font-mono rounded-full">FINTECH</div>
+              <div className="flex gap-2">
+                <a href="https://play.google.com/store/apps/details?id=com.niyo.equitassavingsaccount" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                  <Smartphone size={20} />
+                </a>
+                <a href="https://apps.apple.com/in/app/niyox-digital-banking/id1551109293" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                  <ExternalLink size={20} />
+                </a>
+              </div>
             </div>
             <h3 className="font-display text-2xl font-bold">NiyoX Neo Banking</h3>
             <p className="text-on-surface-variant text-sm">Enhanced the digital banking experience for millions of users with highly secure clean architecture modules.</p>
@@ -344,10 +379,31 @@ const EngineeringShowcase = () => {
           {/* Grid of Others */}
           <div className="md:col-span-3 grid grid-cols-2 gap-4">
             {[
-              { name: 'eZConsult', desc: 'Tele-health consultation engine.' },
-              { name: 'TotalHer', desc: "Women's wellness and health app.", border: 'border-primary-accent/20' },
-              { name: 'PlanIt', desc: 'Enterprise project planning.' },
-              { name: 'V4P', desc: 'Social progress & community.' },
+              { 
+                name: 'eZConsult', 
+                desc: 'Healthcare consultation application with QuickBlox chat integration.',
+                playStore: 'https://play.google.com/store/apps/details?id=my.zuelligpharma.ezconsult',
+                appStore: 'https://apps.apple.com/in/app/ezconsult-malaysia/id1578439485'
+              },
+              { 
+                name: 'TotalHer', 
+                desc: "Women-exclusive social media application.",
+                playStore: 'https://play.google.com/store/apps/details?id=com.totalher.app.prod',
+                appStore: 'https://apps.apple.com/in/app/totalher/id6745810171',
+                border: 'border-primary-accent/20' 
+              },
+              { 
+                name: 'Voices for Progress', 
+                desc: 'Role-based project management application.',
+                playStore: 'https://play.google.com/store/apps/details?id=com.mayadata.vop.prod&hl=en_IN',
+                appStore: 'https://apps.apple.com/in/app/voices-for-progress/id6751319299'
+              },
+              { 
+                name: 'eZRx+', 
+                desc: 'Healthcare medication management application.',
+                playStore: 'https://play.google.com/store/apps/details?id=com.zuelligpharma.ezrxplus',
+                appStore: 'https://apps.apple.com/in/app/ezrx/id6450109562'
+              },
             ].map((proj, idx) => (
               <motion.div 
                 key={proj.name}
@@ -357,7 +413,17 @@ const EngineeringShowcase = () => {
                 transition={{ delay: idx * 0.1 }}
                 className={`glass-card rounded-2xl p-6 flex flex-col justify-between ${proj.border || ''}`}
               >
-                <h4 className="font-display text-lg font-bold">{proj.name}</h4>
+                <div className="flex justify-between items-start mb-3">
+                  <h4 className="font-display text-lg font-bold">{proj.name}</h4>
+                  <div className="flex gap-1">
+                    <a href={proj.playStore} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                      <Smartphone size={16} />
+                    </a>
+                    <a href={proj.appStore} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary-accent transition-colors">
+                      <ExternalLink size={16} />
+                    </a>
+                  </div>
+                </div>
                 <p className="text-[10px] text-on-surface-variant leading-relaxed">{proj.desc}</p>
               </motion.div>
             ))}
@@ -579,7 +645,7 @@ const Contact = () => {
               <div className="p-3 bg-primary-accent/10 rounded-xl group-hover:bg-primary-accent/20 transition-colors">
                 <Mail className="text-primary-accent" size={24} />
               </div>
-              <span className="text-lg font-medium">kuntal.nandi@dev.io</span>
+              <span className="text-lg font-medium">nkuntal555@gmail.com</span>
             </motion.div>
             
             <motion.div 
@@ -592,25 +658,30 @@ const Contact = () => {
               <div className="p-3 bg-primary-accent/10 rounded-xl">
                 <MapPin className="text-primary-accent" size={24} />
               </div>
-              <span className="text-lg font-medium">West Bengal, India</span>
+              <span className="text-lg font-medium">+91 7047964978</span>
             </motion.div>
           </div>
 
           <div className="flex gap-4 pt-8">
             {[
-              { name: 'Github', icon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAPnpY6qkOPt-renV0RmPKp0_nxG8EOjNADUvLm3AjxPyaBeHt7gIQ1TbKEobRImpPj4ae4Wf1ICu9AuEcQJ-byhRXJ5IvoO-XclWOxoygiTetnpE3pOqe5gJ-iOA4w-hZ0o1IJ6ivvJb1GOZlM72Zlxdnw943kEGCqzRE4NcMqKnckXQHfcas7akqb-TdtJObGVuPgw9gUkIvyNroIfErMmQPVMC5VFnKv2H6mw73SUn32NSrP0FK1A6BUkYxg2fjA-j3HmuN87B4' },
-              { name: 'LinkedIn', icon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB1xyaWUjSgrWxRg6VnUrkRDjcclvXXw7BYyIILxtV7a-nLyrhzVLlE3yfXNBUZbZVVVLlAzJ1Th_4xKNTqGZsSp2pWSC0pQ6aKgohTJIw2LwAqDvwNH7iMWaRtNbSSZE8AQh6--1b78TeUGSVDopkJtnMW7VKgLmK0ljAozyYDfo91i7aY3EktcizCrvzmcjVshbgCXV7BB7YuE5J6C7RG9nCk_nzx4ue-_uqhHMzEdafVn3zZTyeLHMdYNUFvkRWVcD4iVhyvpuo' },
-              { name: 'Twitter', icon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDbKaSmUv6jn8ZVV2Eq0MMxg87GmELt6bC_IZWTFDBVqxN6Ol6_X2IE0XP7kov624nWfl46srdW9WDQi4-7WsIM5KnZ9n4GpwGEVrziPpHX5jOBdeCdxNPhdG5xincWl1BLLcZ7GY0C_93cGpbzdGU8QwndhiiVKNtU7BuNCwDMLfEiNKyZM7W26FUQvogWNgtWPM2HGc9NiwQ13QlTGzKdeX-MPOayTFRjFxbow48zWvmTBD7rg42IjQ_cY5sdfMgVZC5cInzZ4vM' },
-            ].map((social, idx) => (
-              <motion.a 
-                key={social.name}
-                href="#"
-                whileHover={{ y: -5, backgroundColor: 'rgba(174,198,255,0.15)' }}
-                className="w-14 h-14 glass-card rounded-2xl flex items-center justify-center p-3"
-              >
-                <img src={social.icon} alt={social.name} className="w-full h-full object-contain filter invert opacity-80" />
-              </motion.a>
-            ))}
+              { name: 'Github', icon: FaGithub, href: 'https://github.com/kuntal-nandi/' },
+              { name: 'LinkedIn', icon: FaLinkedin, href: 'https://www.linkedin.com/in/kuntal-nandi-a9b879222' },
+              { name: 'Email', icon: FaEnvelope, href: 'mailto:nkuntal555@gmail.com' },
+            ].map((social, idx) => {
+              const Icon = social.icon;
+              return (
+                <motion.a 
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -5, backgroundColor: 'rgba(174,198,255,0.15)' }}
+                  className="w-14 h-14 glass-card rounded-2xl flex items-center justify-center p-3 text-on-surface-variant hover:text-primary-accent transition-colors"
+                >
+                  <Icon className="w-6 h-6" />
+                </motion.a>
+              );
+            })}
           </div>
         </div>
 
@@ -670,15 +741,25 @@ const Footer = () => {
         </p>
 
         <div className="flex gap-8">
-          {['Github', 'LinkedIn', 'Email'].map(item => (
-            <a 
-              key={item}
-              href="#" 
-              className="font-mono text-[10px] uppercase tracking-[0.1em] text-outline hover:text-on-surface transition-colors"
-            >
-              {item}
-            </a>
-          ))}
+          {[
+            { name: 'Github', icon: FaGithub, href: 'https://github.com/kuntal-nandi/' },
+            { name: 'LinkedIn', icon: FaLinkedin, href: 'https://www.linkedin.com/in/kuntal-nandi-a9b879222' },
+            { name: 'Email', icon: FaEnvelope, href: 'mailto:nkuntal555@gmail.com' },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <a 
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.1em] text-outline hover:text-on-surface transition-colors"
+              >
+                <Icon className="w-4 h-4" />
+                <span>{item.name}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </footer>

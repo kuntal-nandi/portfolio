@@ -41,6 +41,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply bg-surface text-on-surface font-sans selection:bg-primary-accent/30 overflow-x-hidden;
   }
